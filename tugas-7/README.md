@@ -2,6 +2,9 @@
 
 Repositori ini berisi implementasi **Mini Project Integrasi (Tugas 7)** untuk mata kuliah Pengolahan Citra Digital. Sistem ini merupakan sebuah prototype otomatis yang memverifikasi dokumen ijazah dengan membaca **Nomor Ijazah** menggunakan Optical Character Recognition (OCR) serta mendeteksi keberadaan **Tanda Tangan Kepala Sekolah/Dekan**.
 
+> [!NOTE]
+> **Laporan & Jawaban Deskripsi Tugas**: Penjelasan lengkap mengenai metode pengolahan citra yang digunakan, evaluasi perbandingan nilai CER, serta analisis efektivitas dapat dilihat pada berkas **[REPORT.md](REPORT.md)**.
+
 ---
 
 ## 1. Alur Pipeline Sistem
