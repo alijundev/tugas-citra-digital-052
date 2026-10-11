@@ -7,13 +7,13 @@ import os
 # 1. Konfigurasi Ground Truth & Koordinat Crop (Format resolusi ijazah: ~3506x2481)
 GROUND_TRUTH = "571012022000056"
 
-# Koordinat Area Nomor Ijazah [y1:y2, x1:x2]
+# Koordinat Area Nomor Ijazah [y1:y2, x1:x2] (dari tugas 5 dan 4)
 NOMOR_Y1, NOMOR_Y2 = 2240, 2340
 NOMOR_X1, NOMOR_X2 = 550, 1020
 
-# Koordinat Area Tanda Tangan Kepala Sekolah [y1:y2, x1:x2]
-TTD_Y1, TTD_Y2 = 1850, 2250
-TTD_X1, TTD_X2 = 2150, 2950
+# Koordinat Area Tanda Tangan Kepala Sekolah [y1:y2, x1:x2](korinat dari tugas 6)
+TTD_Y1, TTD_Y2 = 1750, 2030
+TTD_X1, TTD_X2 = 465, 1400
 
 def hitung_cer(ref, hyp):
     """Menghitung Character Error Rate (CER) sederhana berbasis Levenshtein."""
@@ -67,7 +67,7 @@ def proses_ijazah(image_path):
 
     # c. Signature Detection: Hitung jumlah piksel putih (foreground)
     fg_pixels = np.sum(closed == 255)
-    tanda_tangan = "PRESENT" if fg_pixels > 3000 else "ABSENT"
+    tanda_tangan = "PRESENT" if fg_pixels > 5000 else "ABSENT"
 
     # 4. TAMPILKAN HASIL VERIFIKASI
     print("=" * 45)
