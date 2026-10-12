@@ -9,3 +9,6 @@ wheels/
 # Virtual environments
 .venv
 materi_kuliah
+
+tugas-*/result/*.png
+!tugas-*/result/.gikeep

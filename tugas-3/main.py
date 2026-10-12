@@ -50,7 +50,9 @@ def analyze_and_plot(image_path):
     plt.tight_layout()
     
     output_filename = f"plot_{filename.split('.')[0]}.png"
-    output_path = os.path.join(os.path.dirname(__file__), 'result', output_filename)
+    output_path = os.path.join(os.path.dirname(__file__), "result")
+    # Pastikan folder result ada
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     # Simpan grafik ke folder 'result'
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
@@ -59,8 +61,10 @@ def analyze_and_plot(image_path):
     plt.close(fig)
 
 # Eksekusi untuk semua citra di folder
-image_files = glob.glob('./resources/ijazah/*.jpg')
-print(image_files)
+image_files = sorted(glob.glob('./resources/ijazah/*.jpg'))
+if not image_files:
+    image_files = sorted(glob.glob('../resources/ijazah/*.jpg'))
+
+print(f"Memproses {len(image_files)} citra...")
 for file in image_files:
-    print("H")
     analyze_and_plot(file)

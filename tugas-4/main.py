@@ -4,19 +4,20 @@ import matplotlib.pyplot as plt
 import glob
 import os
 
-# 1. Tentukan path folder tempat gambar di-upload
-image_folder = '/content/ijazah/*'
-image_paths = glob.glob(image_folder)
+# 1. Tentukan path folder tempat gambar
+image_paths = sorted(glob.glob('./resources/ijazah/*.jpg'))
+if not image_paths:
+    image_paths = sorted(glob.glob('../resources/ijazah/*.jpg'))
 
 # PENTING: Sesuaikan koordinat crop area nomor ijazah di sini (y1, y2, x1, x2)
 # Format slicing array: img[y1:y2, x1:x2]
 # Jika ke-9 ijazah memiliki tata letak berbeda, kamu mungkin perlu menyesuaikan
 # ini satu per satu, tapi jika formatnya sama, satu set koordinat cukup.
-CROP_Y1, CROP_Y2 = 2240, 2340  # Ganti dengan koordinat Y atas dan bawah
-CROP_X1, CROP_X2 = 550, 1020  # Ganti dengan koordinat X kiri dan kanan
+CROP_Y1, CROP_Y2 = 2240, 2340  # Koordinat Y atas dan bawah
+CROP_X1, CROP_X2 = 550, 1020   # Koordinat X kiri dan kanan
 
 if len(image_paths) == 0:
-    print("Belum ada gambar di folder /content/ijazah. Silakan upload terlebih dahulu.")
+    print("Belum ada gambar di folder resources/ijazah. Silakan periksa path terlebih dahulu.")
 
 for img_path in image_paths:
     # Baca citra dalam mode Grayscale (karena operasi histogram lebih optimal di grayscale)
@@ -64,5 +65,13 @@ for img_path in image_paths:
 
     plt.tight_layout()
     plt.subplots_adjust(top=0.9)
-    plt.show()
+
+    # Simpan hasil visualisasi ke folder 'result'
+    result_dir = os.path.join(os.path.dirname(__file__), 'result')
+    os.makedirs(result_dir, exist_ok=True)
+    filename = os.path.basename(img_path)
+    output_path = os.path.join(result_dir, f"plot_{filename.split('.')[0]}.png")
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    print(f"Hasil disimpan: {output_path}")
     print("-" * 100)
